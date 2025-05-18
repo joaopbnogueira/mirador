@@ -123,5 +123,20 @@ function getLocaleUrl(locale: string, path: string): string {
         <p class="text-sm mt-2 opacity-75">Design for a Premier Property Experience</p>
     </div>
 </footer>
+
+<script is:inline>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate-fadeUp');
+      observer.unobserve(entry.target);
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+});
+</script>
 </body>
 </html>

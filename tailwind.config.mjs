@@ -23,7 +23,16 @@ export default {
             boxShadow: {
                 'subtle': '0 4px 12px rgba(0, 0, 0, 0.05)',
                 'lifted': '0 10px 25px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.04)',
-            }
+            },
+            keyframes: {
+                fadeUp: {
+                    '0%': { opacity: '0', transform: 'translateY(30px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+            },
+            animation: {
+                fadeUp: 'fadeUp 1s ease-out forwards',
+            },
         },
     },
     plugins: [],
