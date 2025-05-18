@@ -1,25 +1,36 @@
 ---
+interface MapContent {
+    map: {
+        title: string;
+        address: string;
+        gmapsEmbedUrl: string;
+    };
+    [key: string]: any;
+}
+
 // Get current locale from URL path or default to 'en'
 const currentPathname = Astro.url.pathname;
 const currentLocale = currentPathname.startsWith('/pt') ? 'pt' : 'en';
-const content = await import(`../content/property/${currentLocale}.json`).then(module => module.default);
+const content: MapContent = await import(`../content/property/${currentLocale}.json`).then(module => module.default);
 const { title, address, gmapsEmbedUrl } = content.map;
 ---
 
-<section id="map" class="py-12 md:py-16 bg-white">
+<section id="map" class="py-20 md:py-28 bg-brand-bg animate-on-scroll">
     <div class="container-custom">
-        <h2 class="section-title">{title}</h2>
-        <p class="text-center text-gray-600 mb-6">{address}</p>
-        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-xl">
+        <h2 class="section-title text-center mx-auto max-w-3xl">{title}</h2>
+        <p class="text-center text-brand-light-text text-lg mb-10">{address}</p>
+        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-lifted border border-gray-200">
             <iframe
                     src={gmapsEmbedUrl}
                     width="100%"
-                    height="450"
+                    height="550"
+                    class="transition-opacity duration-500 opacity-0"
                     style="border:0;"
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
                     title="Property Location Map"
+                    onload="this.style.opacity = 1;"
             ></iframe>
         </div>
     </div>

@@ -1,10 +1,26 @@
 ---
 import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import {getRelativeLocaleUrl} from "astro/virtual-modules/i18n";
+
+interface LayoutContent {
+    meta: {
+        title: string;
+        description: string;
+    };
+    navigation: {
+        descriptionLink: string;
+        specificationsLink: string;
+        mapLink: string;
+        contactLink: string;
+        [key: string]: string;
+    };
+    [key: string]: any;
+}
 
 // Get current locale from URL path or default to 'en'
 const currentPathname = Astro.url.pathname;
 const currentLocale = currentPathname.startsWith('/pt') ? 'pt' : 'en';
-const content = await import(`../content/property/${currentLocale}.json`).then(module => module.default);
+const content: LayoutContent = await import(`../content/property/${currentLocale}.json`).then(module => module.default);
 
 const { title: pageTitle, description: pageDescription } = content.meta;
 const { navigation } = content;
@@ -33,20 +49,20 @@ function getLocaleUrl(locale: string, path: string): string {
     <title>{pageTitle}</title>
 
     <link rel="canonical" href={canonicalURL.href} />
-    {locales.map((locale: string) => (
+    {locales.map(locale => (
             <link
                     rel="alternate"
                     hreflang={locale}
-                    href={new URL(getLocaleUrl(locale, Astro.url.pathname), Astro.site).href}
+                    href={getRelativeLocaleUrl(locale, Astro.url.pathname === `/${currentLocale === defaultLocale ? '' : currentLocale}` ? (locale === defaultLocale ? '/' : `/${locale}/`) : Astro.url.pathname.replace(`/${currentLocale}`, locale === Astro.config.i18n.defaultLocale ? '' : `/${locale}`))}
             />
     ))}
-    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).href} />
-
+    <link rel="alternate" hreflang="x-default" href={getRelativeLocaleUrl(defaultLocale, '/')} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <slot name="head" />
     <style is:global>
@@ -55,28 +71,42 @@ function getLocaleUrl(locale: string, path: string): string {
         @tailwind utilities;
 
         body {
-            @apply bg-gray-50 text-gray-800 antialiased font-sans;
+            @apply bg-brand-bg text-brand-text antialiased font-sans;
         }
         .section-title {
-            @apply text-3xl font-bold text-brand-primary mb-6 pb-2 border-b-2 border-brand-primary;
+            @apply text-4xl font-bold text-brand-primary mb-8 pb-3 border-b-2 border-brand-secondary;
         }
         .container-custom {
-            @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+            @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8; /* Slightly wider for a premier feel */
+        }
+        /* Custom scrollbar for a more elegant touch (optional, browser support varies) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: theme('colors.brand-light-gray');
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.brand-secondary');
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.brand-accent');
         }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
-<header class="bg-white shadow-md sticky top-0 z-50">
-    <div class="container-custom py-4">
+<header class="bg-brand-bg shadow-subtle sticky top-0 z-50 backdrop-blur-md bg-opacity-90">
+    <div class="container-custom py-5"> {/* Increased padding */}
         <nav class="flex justify-between items-center">
-            <a href={getLocaleUrl(currentLocale, '/')} class="text-2xl font-bold text-brand-primary hover:text-brand-secondary transition-colors">
+            <a href={getRelativeLocaleUrl(currentLocale, '')} class="text-3xl font-extrabold text-brand-primary hover:text-brand-accent transition-colors duration-300 ease-custom-ease">
                 Mirador Flat
             </a>
-            <ul class="flex space-x-6 items-center">
-                <li><a href="#description" class="text-gray-600 hover:text-brand-primary transition-colors">{navigation.descriptionLink}</a></li>
-                <li><a href="#specifications" class="text-gray-600 hover:text-brand-primary transition-colors">{navigation.specificationsLink}</a></li>
-                <li><a href="#map" class="text-gray-600 hover:text-brand-primary transition-colors">{navigation.mapLink}</a></li>
-                <li><a href="#contact" class="bg-brand-primary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors">{navigation.contactLink}</a></li>
+            <ul class="flex space-x-8 items-center"> {/* Increased spacing */}
+                <li><a href="#description" class="text-lg text-brand-text hover:text-brand-secondary transition-colors duration-300 ease-custom-ease font-medium">{navigation.descriptionLink}</a></li>
+                <li><a href="#specifications" class="text-lg text-brand-text hover:text-brand-secondary transition-colors duration-300 ease-custom-ease font-medium">{navigation.specificationsLink}</a></li>
+                <li><a href="#map" class="text-lg text-brand-text hover:text-brand-secondary transition-colors duration-300 ease-custom-ease font-medium">{navigation.mapLink}</a></li>
+                <li><a href="#contact" class="bg-brand-primary text-white px-6 py-3 rounded-lg hover:bg-brand-text transition-colors duration-300 ease-custom-ease text-lg font-semibold shadow-md hover:shadow-lifted transform hover:-translate-y-0.5">{navigation.contactLink}</a></li>
                 <li><LanguageSwitcher /></li>
             </ul>
         </nav>
@@ -87,10 +117,10 @@ function getLocaleUrl(locale: string, path: string): string {
     <slot />
 </main>
 
-<footer class="bg-gray-800 text-gray-300 py-8 mt-12">
+<footer class="bg-brand-dark-bg text-brand-light-gray py-10 mt-16">
     <div class="container-custom text-center">
-        <p>&copy; {new Date().getFullYear()} Mirador Aveiro Flat. All rights reserved.</p>
-        <p class="text-sm mt-1">Powered by Your Name/Company</p>
+        <p class="text-base">&copy; {new Date().getFullYear()} Mirador Aveiro Flat. All rights reserved.</p>
+        <p class="text-sm mt-2 opacity-75">Design for a Premier Property Experience</p>
     </div>
 </footer>
 </body>
