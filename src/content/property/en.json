@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Modern 3-Bedroom Apartment in Mirador, Aveiro",
+    "description": "Spacious 191 sqm, 3-bedroom apartment for sale in the prestigious Mirador Business Center, Aveiro. Features stunning views, modern amenities, and a prime location."
+  },
+  "hero": {
+    "slides": [
+      {
+        "image": "/images/slide1.jpg",
+        "alt": "Spacious and bright living room of the modern apartment"
+      },
+      {
+        "image": "/images/slide2.jpg",
+        "alt": "View of Aveiro canals near Mirador Business Center"
+      },
+      {
+        "image": "/images/slide3.jpg",
+        "alt": "Modern fully equipped kitchen in the apartment"
+      }
+    ]
+  },
+  "description": {
+    "title": "Exceptional 3-Bedroom Apartment in Mirador, Aveiro",
+    "paragraphs": [
+      "Discover refined urban living in this stunning 3-bedroom apartment, boasting a generous 191 sqm of meticulously designed space within the iconic Mirador Business Center, Aveiro. Perfectly positioned to offer breathtaking views and unparalleled convenience, this residence is an oasis of modern comfort and style.",
+      "Step into a world of contemporary elegance where spacious interiors are bathed in natural light. The open-plan living and dining area provides a versatile setting for both relaxation and entertaining, seamlessly connecting to a modern, fully-equipped kitchen. Each of the three bedrooms offers a tranquil retreat, with the master suite featuring its own private bathroom.",
+      "Located in the heart of Aveiro, the Mirador Business Center is more than just a residence; it's a lifestyle. Enjoy easy access to local shops, gourmet restaurants, cultural attractions, and the picturesque Aveiro canals. With premium finishes, state-of-the-art amenities, and a coveted address, this apartment represents a unique opportunity for discerning buyers."
+    ]
+  },
+  "specifications": {
+    "title": "Property Details",
+    "items": [
+      { "label": "Property Type", "value": "Apartment" },
+      { "label": "Bedrooms", "value": "3" },
+      { "label": "Bathrooms", "value": "2 (1 en-suite, 1 social)" },
+      { "label": "Total Area", "value": "191 m²" },
+      { "label": "Floor", "value": "High Floor (e.g., 7th)" },
+      { "label": "Elevator", "value": "Yes, multiple" },
+      { "label": "Parking", "value": "2 Garage Spaces" },
+      { "label": "Balcony/Terrace", "value": "Yes, spacious balcony with city views" },
+      { "label": "Condition", "value": "New / Excellent" },
+      { "label": "Energy Rating", "value": "A" },
+      { "label": "Year Built", "value": "Recent (e.g., 2022)" },
+      { "label": "Amenities", "value": "Air Conditioning, Central Heating, Double Glazing, Built-in Wardrobes, Video Intercom" },
+      { "label": "Building Features", "value": "Modern facade, Concierge possibility, Prime Location" }
+    ]
+  },
+  "map": {
+    "title": "Location",
+    "address": "Mirador Business Center, Rua Cristóvão Pinho Queimado, 33, 3800-012 Aveiro, Portugal",
+    "gmapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.830512894778!2d-8.657853684594288!3d40.63890197934018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2398005002067d%3A0x6640a2cf19104d83!2sMirador%20Business%20Center!5e0!3m2!1sen!2spt!4v1684000000000!5m2!1sen!2spt"
+  },
+  "navigation": {
+    "home": "Home",
+    "descriptionLink": "Description",
+    "specificationsLink": "Details",
+    "mapLink": "Location",
+    "contactLink": "Contact"
+  }
+}

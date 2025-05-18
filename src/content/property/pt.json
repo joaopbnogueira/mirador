@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Moderno Apartamento T3 no Mirador, Aveiro",
+    "description": "Espaçoso apartamento T3 de 191 m² para venda no prestigiado Mirador Business Center, Aveiro. Com vistas deslumbrantes, comodidades modernas e localização privilegiada."
+  },
+  "hero": {
+    "slides": [
+      {
+        "image": "/images/slide1.jpg",
+        "alt": "Sala de estar espaçosa e luminosa do moderno apartamento"
+      },
+      {
+        "image": "/images/slide2.jpg",
+        "alt": "Vista dos canais de Aveiro perto do Mirador Business Center"
+      },
+      {
+        "image": "/images/slide3.jpg",
+        "alt": "Cozinha moderna totalmente equipada no apartamento"
+      }
+    ]
+  },
+  "description": {
+    "title": "Apartamento T3 Excecional no Mirador, Aveiro",
+    "paragraphs": [
+      "Descubra uma vida urbana refinada neste deslumbrante apartamento T3, com generosos 191 m² de espaço meticulosamente projetado no icónico Mirador Business Center, Aveiro. Perfeitamente posicionado para oferecer vistas de cortar a respiração e conveniência incomparável, esta residência é um oásis de conforto e estilo moderno.",
+      "Entre num mundo de elegância contemporânea onde os interiores espaçosos são banhados por luz natural. A sala de estar e de jantar em plano aberto oferece um ambiente versátil tanto para relaxamento como para entretenimento, conectando-se de forma fluida a uma cozinha moderna e totalmente equipada. Cada um dos três quartos oferece um refúgio tranquilo, com a suíte principal a possuir a sua própria casa de banho privativa.",
+      "Localizado no coração de Aveiro, o Mirador Business Center é mais do que uma residência; é um estilo de vida. Desfrute de fácil acesso a lojas locais, restaurantes gourmet, atrações culturais e aos pitorescos canais de Aveiro. Com acabamentos premium, comodidades de última geração e uma morada cobiçada, este apartamento representa uma oportunidade única para compradores exigentes."
+    ]
+  },
+  "specifications": {
+    "title": "Detalhes do Imóvel",
+    "items": [
+      { "label": "Tipologia", "value": "Apartamento" },
+      { "label": "Quartos", "value": "3" },
+      { "label": "Casas de Banho", "value": "2 (1 suite, 1 social)" },
+      { "label": "Área Total", "value": "191 m²" },
+      { "label": "Andar", "value": "Andar Alto (ex: 7º)" },
+      { "label": "Elevador", "value": "Sim, múltiplos" },
+      { "label": "Estacionamento", "value": "2 Lugares de Garagem" },
+      { "label": "Varanda/Terraço", "value": "Sim, varanda espaçosa com vistas para a cidade" },
+      { "label": "Condição", "value": "Novo / Excelente" },
+      { "label": "Certificação Energética", "value": "A" },
+      { "label": "Ano de Construção", "value": "Recente (ex: 2022)" },
+      { "label": "Comodidades", "value": "Ar Condicionado, Aquecimento Central, Vidros Duplos, Roupeiros Embutidos, Vídeo Porteiro" },
+      { "label": "Características do Edifício", "value": "Fachada moderna, Possibilidade de Portaria, Localização Premium" }
+    ]
+  },
+  "map": {
+    "title": "Localização",
+    "address": "Mirador Business Center, Rua Cristóvão Pinho Queimado, 33, 3800-012 Aveiro, Portugal",
+    "gmapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.830512894778!2d-8.657853684594288!3d40.63890197934018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2398005002067d%3A0x6640a2cf19104d83!2sMirador%20Business%20Center!5e0!3m2!1spt-PT!2spt!4v1684000000000!5m2!1spt-PT!2spt"
+  },
+  "navigation": {
+    "home": "Início",
+    "descriptionLink": "Descrição",
+    "specificationsLink": "Detalhes",
+    "mapLink": "Localização",
+    "contactLink": "Contacto"
+  }
+}

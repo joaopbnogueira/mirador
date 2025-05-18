@@ -1,0 +1,97 @@
+---
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+
+// Get current locale from URL path or default to 'en'
+const currentPathname = Astro.url.pathname;
+const currentLocale = currentPathname.startsWith('/pt') ? 'pt' : 'en';
+const content = await import(`../content/property/${currentLocale}.json`).then(module => module.default);
+
+const { title: pageTitle, description: pageDescription } = content.meta;
+const { navigation } = content;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Define available locales
+const locales = ['en', 'pt'];
+const defaultLocale = 'en';
+
+// Helper function to get URL for a specific locale
+function getLocaleUrl(locale: string, path: string): string {
+  if (locale === defaultLocale) {
+    return path === '/' ? '/' : path;
+  }
+  return `/${locale}${path === '/' ? '' : path}`;
+}
+---
+
+<!doctype html>
+<html lang={currentLocale} class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle}</title>
+
+    <link rel="canonical" href={canonicalURL.href} />
+    {locales.map((locale: string) => (
+            <link
+                    rel="alternate"
+                    hreflang={locale}
+                    href={new URL(getLocaleUrl(locale, Astro.url.pathname), Astro.site).href}
+            />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).href} />
+
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <slot name="head" />
+    <style is:global>
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        body {
+            @apply bg-gray-50 text-gray-800 antialiased font-sans;
+        }
+        .section-title {
+            @apply text-3xl font-bold text-brand-primary mb-6 pb-2 border-b-2 border-brand-primary;
+        }
+        .container-custom {
+            @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container-custom py-4">
+        <nav class="flex justify-between items-center">
+            <a href={getLocaleUrl(currentLocale, '/')} class="text-2xl font-bold text-brand-primary hover:text-brand-secondary transition-colors">
+                Mirador Flat
+            </a>
+            <ul class="flex space-x-6 items-center">
+                <li><a href="#description" class="text-gray-600 hover:text-brand-primary transition-colors">{navigation.descriptionLink}</a></li>
+                <li><a href="#specifications" class="text-gray-600 hover:text-brand-primary transition-colors">{navigation.specificationsLink}</a></li>
+                <li><a href="#map" class="text-gray-600 hover:text-brand-primary transition-colors">{navigation.mapLink}</a></li>
+                <li><a href="#contact" class="bg-brand-primary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors">{navigation.contactLink}</a></li>
+                <li><LanguageSwitcher /></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="flex-grow">
+    <slot />
+</main>
+
+<footer class="bg-gray-800 text-gray-300 py-8 mt-12">
+    <div class="container-custom text-center">
+        <p>&copy; {new Date().getFullYear()} Mirador Aveiro Flat. All rights reserved.</p>
+        <p class="text-sm mt-1">Powered by Your Name/Company</p>
+    </div>
+</footer>
+</body>
+</html>
