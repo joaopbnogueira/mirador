@@ -4,66 +4,74 @@
 
 @layer base {
   :root {
-    /* New Palette: Sophisticated Teal & Copper */
-    --background: 210 40% 98%; /* Very light cool gray (almost white) */
-    --foreground: 215 25% 27%; /* Dark desaturated cyan (charcoal) */
-
-    --card: 0 0% 100%; /* White */
-    --card-foreground: 215 25% 27%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
-
-    --primary: 190 60% 30%; /* Deep Teal */
-    --primary-foreground: 0 0% 100%; /* White */
-
-    --secondary: 210 30% 90%; /* Light Gray for subtle contrast */
-    --secondary-foreground: 215 25% 27%; /* Dark foreground for secondary */
-
-    --muted: 210 40% 93%; /* Slightly darker light gray */
-    --muted-foreground: 215 15% 50%; /* Softer medium gray */
-
-    --accent: 25 80% 55%; /* Warm Copper/Burnt Orange */
-    --accent-foreground: 0 0% 100%; /* White for contrast on accent */
-
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 210 20% 85%; /* Softer border color */
-    --input: 210 20% 88%;
-    --ring: 190 60% 40%; /* Primary color for rings */
-
-    --radius: 0.75rem;
+    --background: 252, 252, 250;
+    --foreground: 51, 43, 38;
+    --card: 252, 252, 250;
+    --card-foreground: 51, 43, 38;
+    --popover: 252, 252, 250;
+    --popover-foreground: 51, 43, 38;
+    --primary: 184, 134, 11; /* Golden wood color for CTA */
+    --primary-foreground: 252, 252, 250;
+    --secondary: 242, 240, 235;
+    --secondary-foreground: 64, 54, 48;
+    --muted: 244, 242, 238;
+    --muted-foreground: 115, 102, 92;
+    --accent: 218, 165, 32; /* Golden wood accent color */
+    --accent-foreground: 64, 54, 48;
+    --destructive: 220, 38, 38;
+    --destructive-foreground: 252, 252, 250;
+    --border: 229, 225, 216;
+    --input: 229, 225, 216;
+    --ring: 184, 134, 11; /* Golden wood color for ring */
+    --chart-1: 204, 102, 102;
+    --chart-2: 153, 102, 51;
+    --chart-3: 102, 102, 68;
+    --chart-4: 187, 85, 68;
+    --chart-5: 204, 153, 102;
+    --radius: 0.5rem;
+    --sidebar-background: 249, 248, 244;
+    --sidebar-foreground: 77, 65, 57;
+    --sidebar-primary: 184, 134, 11; /* Golden wood color for sidebar primary */
+    --sidebar-primary-foreground: 252, 252, 250;
+    --sidebar-accent: 242, 240, 235;
+    --sidebar-accent-foreground: 77, 65, 57;
+    --sidebar-border: 229, 225, 216;
+    --sidebar-ring: 204, 153, 102;
   }
-
   .dark {
-    --background: 220 18% 12%; /* Very Dark Blue/Gray */
-    --foreground: 210 30% 90%; /* Light Gray */
-
-    --card: 220 15% 16%; /* Darker Card */
-    --card-foreground: 210 30% 90%;
-
-    --popover: 220 18% 12%;
-    --popover-foreground: 210 30% 90%;
-
-    --primary: 190 55% 45%; /* Slightly brighter Teal for dark mode */
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 220 15% 22%; /* Darker Gray for secondary */
-    --secondary-foreground: 210 30% 90%;
-
-    --muted: 220 15% 20%; /* Darker Muted */
-    --muted-foreground: 210 20% 65%;
-
-    --accent: 25 75% 60%; /* Brighter Copper for dark mode */
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 60% 45%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 15% 25%;
-    --input: 220 15% 25%;
-    --ring: 190 55% 45%;
+    --background: 252, 252, 250;
+    --foreground: 51, 43, 38;
+    --card: 252, 252, 250;
+    --card-foreground: 51, 43, 38;
+    --popover: 252, 252, 250;
+    --popover-foreground: 51, 43, 38;
+    --primary: 184, 134, 11; /* Golden wood color for CTA */
+    --primary-foreground: 252, 252, 250;
+    --secondary: 242, 240, 235;
+    --secondary-foreground: 64, 54, 48;
+    --muted: 244, 242, 238;
+    --muted-foreground: 115, 102, 92;
+    --accent: 218, 165, 32; /* Golden wood accent color */
+    --accent-foreground: 64, 54, 48;
+    --destructive: 220, 38, 38;
+    --destructive-foreground: 252, 252, 250;
+    --border: 229, 225, 216;
+    --input: 229, 225, 216;
+    --ring: 184, 134, 11; /* Golden wood color for ring */
+    --chart-1: 204, 102, 102;
+    --chart-2: 153, 102, 51;
+    --chart-3: 102, 102, 68;
+    --chart-4: 187, 85, 68;
+    --chart-5: 204, 153, 102;
+    --radius: 0.5rem;
+    --sidebar-background: 249, 248, 244;
+    --sidebar-foreground: 77, 65, 57;
+    --sidebar-primary: 184, 134, 11; /* Golden wood color for sidebar primary */
+    --sidebar-primary-foreground: 252, 252, 250;
+    --sidebar-accent: 242, 240, 235;
+    --sidebar-accent-foreground: 77, 65, 57;
+    --sidebar-border: 229, 225, 216;
+    --sidebar-ring: 204, 153, 102;
   }
 }
 
