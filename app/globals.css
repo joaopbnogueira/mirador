@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* New Palette: Sophisticated Teal & Copper */
+    --background: 210 40% 98%; /* Very light cool gray (almost white) */
+    --foreground: 215 25% 27%; /* Dark desaturated cyan (charcoal) */
+
+    --card: 0 0% 100%; /* White */
+    --card-foreground: 215 25% 27%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+
+    --primary: 190 60% 30%; /* Deep Teal */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 210 30% 90%; /* Light Gray for subtle contrast */
+    --secondary-foreground: 215 25% 27%; /* Dark foreground for secondary */
+
+    --muted: 210 40% 93%; /* Slightly darker light gray */
+    --muted-foreground: 215 15% 50%; /* Softer medium gray */
+
+    --accent: 25 80% 55%; /* Warm Copper/Burnt Orange */
+    --accent-foreground: 0 0% 100%; /* White for contrast on accent */
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 85%; /* Softer border color */
+    --input: 210 20% 88%;
+    --ring: 190 60% 40%; /* Primary color for rings */
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 220 18% 12%; /* Very Dark Blue/Gray */
+    --foreground: 210 30% 90%; /* Light Gray */
+
+    --card: 220 15% 16%; /* Darker Card */
+    --card-foreground: 210 30% 90%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 210 30% 90%;
+
+    --primary: 190 55% 45%; /* Slightly brighter Teal for dark mode */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 22%; /* Darker Gray for secondary */
+    --secondary-foreground: 210 30% 90%;
+
+    --muted: 220 15% 20%; /* Darker Muted */
+    --muted-foreground: 210 20% 65%;
+
+    --accent: 25 75% 60%; /* Brighter Copper for dark mode */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 25%;
+    --ring: 190 55% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1; /* Enable common ligatures */
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/30 dark:bg-muted/20;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/60 rounded;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+}
+
+/* Animation Utilities */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  .animate-slide-in-left {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+  .animate-slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+  .animate-zoom-in {
+    animation: zoomIn 0.6s ease-out forwards;
+  }
+
+  .animation-delay-100 {
+    animation-delay: 0.1s;
+  }
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+  .animation-delay-300 {
+    animation-delay: 0.3s;
+  }
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+  .animation-delay-600 {
+    animation-delay: 0.6s;
+  }
+  .animation-delay-700 {
+    animation-delay: 0.7s;
+  }
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
