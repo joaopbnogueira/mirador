@@ -51,5 +51,25 @@
   "contactTel": "Telefone",
   "contactEmailLabel": "Email",
   "contactScheduleVisit": "Agendar Visita",
-  "footerText": "© 2025 Mirador Residence Aveiro. Todos os direitos reservados."
+  "noImagesToDisplay": "Nenhuma imagem para exibir",
+  "landing": {
+    "Home": {
+      "slug": "",
+      "title": "Bem-vindo ao Mirador Business Center",
+      "description": "Encontre o seu novo lar no coração de Aveiro. Apartamento T3 de luxo com 191 m², 3 quartos (1 suite), 3 casas de banho, garagem para 2 carros e vistas deslumbrantes."
+    }
+  },
+  "app": {
+    "nameSuffix": "T3 Mirador Business Center - Aveiro",
+    "description": "Descubra o seu novo lar no coração de Aveiro. Apartamento T3 de luxo no Mirador Business Center, com 191 m², 3 quartos (1 suite), 3 casas de banho, garagem para 2 carros e vistas deslumbrantes. Agende a sua visita hoje!"
+  },
+  "navbar": {
+    "home": "Início",
+    "description": "Descrição",
+    "specs": "Especificações",
+    "gallery": "Galeria",
+    "floorPlans": "Plantas",
+    "location": "Localização",
+    "contact": "Contacto"
+  }
 }

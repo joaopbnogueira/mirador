@@ -1,11 +1,11 @@
 "use client"
 
-import type React from "react"
+import React, {useCallback} from "react"
 import { useState, useEffect } from "react"
-import Image from "next/image"
+import {Image} from "@/components/Image"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useTranslation } from "react-i18next" // Import useTranslation
+import type {TranslationKey} from "@/lib/i18n/types";
 
 interface Slide {
   src: string
@@ -14,11 +14,11 @@ interface Slide {
 
 interface ImageSlideshowProps {
   images: Slide[]
-  // lang prop is no longer needed
+  translations: Record<TranslationKey, string>;
 }
 
-const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images }) => {
-  const { t } = useTranslation() // Use the hook
+const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations }) => {
+  const t = useCallback((key: TranslationKey) => translations[key] || key,[translations]);
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const goToPrevious = () => {
@@ -44,7 +44,7 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images }) => {
   if (!images || images.length === 0) {
     return (
       <div className="w-full h-[70vh] md:h-[85vh] bg-muted flex items-center justify-center text-muted-foreground">
-        {t("noImagesToDisplay", "No images to display.")}
+        {t("noImagesToDisplay")}
       </div>
     )
   }
@@ -56,8 +56,6 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images }) => {
           src={images[currentIndex].src || "/placeholder.svg"}
           alt={t(images[currentIndex].alt as any) || images[currentIndex].alt}
           fill // Use fill instead of layout="fill"
-          objectFit="cover"
-          quality={85}
           priority={currentIndex === 0}
           className="transition-transform duration-1000 ease-in-out group-hover:scale-105" // Subtle zoom on hover
         />
@@ -108,7 +106,7 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images }) => {
                 key={index}
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentIndex === index ? "bg-white scale-125" : "bg-white/50 hover:bg-white/75"}`}
                 onClick={() => setCurrentIndex(index)}
-                aria-label={t("goToSlide", `Go to slide ${index + 1}`, { slideNumber: index + 1 })}
+                aria-label={"Go to slide " + (index + 1)}
               />
             ))}
           </div>
