@@ -16,7 +16,7 @@ const envVars = {
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
-  distDir: "build",
+  distDir: "dist",
   output: "export",
   trailingSlash: false,
   reactStrictMode: true,
