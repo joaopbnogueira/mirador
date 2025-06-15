@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import type {Metadata, ResolvingMetadata, Viewport} from 'next';
 import {getTranslations} from 'next-intl/server';
 
-import preview from '@/public/preview.jpg';
+import preview from '@/public/side.webp';
 
 import {AppConstants} from '@/lib/constants';
 import {Inter} from "next/font/google";

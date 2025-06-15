@@ -29,47 +29,47 @@ import type {Locale, TranslationKey} from "@/lib/i18n/types";
 
 const heroImages = [
     {
-        src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&h=1000&fit=crop&q=85",
-        alt: "Modern Living Room with City View",
+        src: "media/side.webp",
+        alt: "Exterior View of the Property",
     },
     {
-        src: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1600&h=1000&fit=crop&q=85",
+        src: "media/sala/sala_1.jpeg",
+        alt: "Modern Living Room",
+    },
+    {
+        src: "media/quarto 1/quarto_1_1.jpeg",
         alt: "Bright and Spacious Bedroom",
     },
     {
-        src: "https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=1600&h=1000&fit=crop&q=85",
-        alt: "Sleek Modern Kitchen with Island",
-    },
-    {
-        src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1600&h=1000&fit=crop&q=85",
-        alt: "Exterior View of the Property",
+        src: "media/wc/wc_1.jpeg",
+        alt: "Modern Bathroom",
     },
 ]
 
 const galleryImages = [
     {
-        src: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=800&fit=crop&q=80",
+        src: "media/side.webp",
         alt: "Apartment Building Exterior",
     },
     {
-        src: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&h=800&fit=crop&q=80",
+        src: "media/sala/sala_2.jpeg",
         alt: "Detailed Living Area",
     },
     {
-        src: "https://images.unsplash.com/photo-1615875605825-5eb9bb5d52ac?w=1200&h=800&fit=crop&q=80",
-        alt: "Modern Bathroom Fixtures",
+        src: "media/wc/wc_1.jpeg",
+        alt: "Modern Bathroom",
     },
     {
-        src: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&h=800&fit=crop&q=80",
+        src: "media/quarto 1/quarto_1_1.jpeg",
         alt: "Cozy Bedroom Setup",
     },
     {
-        src: "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1200&h=800&fit=crop&q=80",
-        alt: "Alternate Bedroom View",
+        src: "media/varanda SE/varanda_se_1.jpeg",
+        alt: "Southeast Balcony View",
     },
     {
-        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
-        alt: "Stylish Interior Design Element",
+        src: "media/hall/ent_hall.jpeg",
+        alt: "Entrance Hall",
     },
 ]
 
