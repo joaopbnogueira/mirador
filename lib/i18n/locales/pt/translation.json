@@ -8,11 +8,11 @@
   "navContact": "Contacto",
   "langSwitchPT": "Português",
   "langSwitchEN": "English",
-  "heroTitle": "Apartamento T3 de Luxo em Aveiro",
+  "heroTitle": "Apartamento T3 Moderno em Aveiro",
   "heroSubtitle": "Mirador Business Center - 191 m² de Vida Moderna",
   "heroViewDetails": "Ver Detalhes",
   "descriptionTitle": "Descrição do Imóvel",
-  "descriptionBody": "Descubra este deslumbrante apartamento T3 localizado no prestigiado Mirador Business Center, no coração de Aveiro. Com uma generosa área de 191 m² de espaço meticulosamente projetado, este imóvel combina na perfeição luxo, conforto e uma localização central imbatível. Desfrute de vistas panorâmicas deslumbrantes e acesso conveniente a todas as comodidades da cidade, incluindo lojas, restaurantes e atrações culturais. As características principais incluem amplas áreas de estar e jantar, três quartos bem dimensionados (um deles suite), casas de banho modernas, uma cozinha totalmente equipada com eletrodomésticos de alta gama e acabamentos premium em todo o apartamento. A abundante luz natural inunda os interiores, criando uma atmosfera acolhedora e convidativa. Este apartamento é perfeito para famílias que procuram um estilo de vida urbano sofisticado ou como uma excelente oportunidade de investimento numa das moradas mais procuradas de Aveiro.",
+  "descriptionBody": "Descubra este deslumbrante apartamento T3 localizado no prestigiado Mirador Business Center, no coração de Aveiro. Com uma generosa área de 191 m² de espaço meticulosamente projetado, este imóvel combina na perfeição conforto e uma localização central imbatível. Desfrute de vistas panorâmicas deslumbrantes e acesso conveniente a todas as comodidades da cidade, incluindo lojas, restaurantes e atrações culturais. As características principais incluem amplas áreas de estar e jantar, três quartos bem dimensionados (um deles suite), casas de banho modernas, uma cozinha totalmente equipada com eletrodomésticos de alta gama e acabamentos premium em todo o apartamento. A abundante luz natural inunda os interiores, criando uma atmosfera acolhedora e convidativa. Este apartamento é perfeito para famílias que procuram um estilo de vida urbano sofisticado ou como uma excelente oportunidade de investimento numa das moradas mais procuradas de Aveiro.",
   "specsTitle": "Especificações Técnicas",
   "specsArea": "Área Total",
   "specsBedrooms": "Quartos",
@@ -56,12 +56,12 @@
     "Home": {
       "slug": "home",
       "title": "Bem-vindo ao Mirador Business Center",
-      "description": "Encontre o seu novo lar no coração de Aveiro. Apartamento T3 de luxo com 191 m², 3 quartos (1 suite), 3 casas de banho, garagem para 2 carros e vistas deslumbrantes."
+      "description": "Encontre o seu novo lar no coração de Aveiro. Apartamento T3 moderno com 191 m², 3 quartos (1 suite), 3 casas de banho, garagem para 2 carros e vistas deslumbrantes."
     }
   },
   "app": {
     "nameSuffix": "T3 Mirador Business Center - Aveiro",
-    "description": "Descubra o seu novo lar no coração de Aveiro. Apartamento T3 de luxo no Mirador Business Center, com 191 m², 3 quartos (1 suite), 3 casas de banho, garagem para 2 carros e vistas deslumbrantes. Agende a sua visita hoje!"
+    "description": "Descubra o seu novo lar no coração de Aveiro. Apartamento T3 moderno no Mirador Business Center, com 191 m², 3 quartos (1 suite), 3 casas de banho, garagem para 2 carros e vistas deslumbrantes. Agende a sua visita hoje!"
   },
   "navbar": {
     "home": "Início",

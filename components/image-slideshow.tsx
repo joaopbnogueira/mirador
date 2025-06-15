@@ -58,6 +58,7 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations })
           fill // Use fill instead of layout="fill"
           priority={currentIndex === 0}
           className="transition-transform duration-1000 ease-in-out group-hover:scale-105" // Subtle zoom on hover
+          style={{ objectFit: "cover" }} // Ensure image preserves aspect ratio while filling available space
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col items-center justify-end text-center p-8 md:p-12">

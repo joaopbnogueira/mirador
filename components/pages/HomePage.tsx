@@ -37,39 +37,79 @@ const heroImages = [
         alt: "Modern Living Room",
     },
     {
-        src: "media/quarto 1/quarto_1_1.jpeg",
-        alt: "Bright and Spacious Bedroom",
-    },
-    {
-        src: "media/wc/wc_1.jpeg",
-        alt: "Modern Bathroom",
+        src: "media/sala/sala_2.jpeg",
+        alt: "Modern Living Room",
     },
 ]
 
 const galleryImages = [
     {
-        src: "media/side.webp",
-        alt: "Apartment Building Exterior",
+        src: "media/sala/sala_1.jpeg",
+        alt: "Detailed Living Area",
     },
     {
         src: "media/sala/sala_2.jpeg",
         alt: "Detailed Living Area",
     },
     {
-        src: "media/wc/wc_1.jpeg",
-        alt: "Modern Bathroom",
+        src: "media/sala/sala_3.jpeg",
+        alt: "Detailed Living Area",
     },
     {
         src: "media/quarto 1/quarto_1_1.jpeg",
         alt: "Cozy Bedroom Setup",
     },
     {
+        src: "media/quarto 1/quarto_1_2.jpeg",
+        alt: "Cozy Bedroom Alternative View",
+    },
+    {
+        src: "media/quarto 2/quarto_2_1.jpeg",
+        alt: "Second Bedroom View",
+    },
+    {
+        src: "media/quarto 2/quarto_2_2.jpeg",
+        alt: "Second Bedroom Alternative View",
+    },
+    {
         src: "media/varanda SE/varanda_se_1.jpeg",
         alt: "Southeast Balcony View",
     },
     {
+        src: "media/varanda SE/varanda_se_2.jpeg",
+        alt: "Southeast Balcony Alternative View",
+    },
+    {
+        src: "media/varanda NO/varanda_no_1.jpg",
+        alt: "Northwest Balcony View",
+    },
+    {
         src: "media/hall/ent_hall.jpeg",
         alt: "Entrance Hall",
+    },
+    {
+        src: "media/hall/dist_hall1.jpeg",
+        alt: "Detailed Living Area",
+    },
+    {
+        src: "media/wc servico/wc_servico_1.jpeg",
+        alt: "Service Bathroom",
+    },
+    {
+        src: "media/wc/wc_1.jpeg",
+        alt: "Modern Bathroom",
+    },
+    {
+        src: "media/side.webp",
+        alt: "Apartment Building Exterior",
+    },
+    {
+        src: "media/airview.png",
+        alt: "Apartment Building Air View",
+    },
+    {
+        src: "media/rear.webp",
+        alt: "Apartment Building Rear View",
     },
 ]
 
@@ -135,8 +175,8 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
 
     const navLinks = [
         { key: "navDescription" as TranslationKey, ref: descriptionRef, id: "description" },
-        { key: "navSpecs" as TranslationKey, ref: specsRef, id: "specifications" },
         { key: "navGallery" as TranslationKey, ref: galleryRef, id: "gallery" },
+        { key: "navSpecs" as TranslationKey, ref: specsRef, id: "specifications" },
         { key: "navFloorPlans" as TranslationKey, ref: floorPlansRef, id: "floor-plans" },
         { key: "navLocation" as TranslationKey, ref: locationRef, id: "location" },
         { key: "navContact" as TranslationKey, ref: contactRef, id: "contact" },
@@ -311,6 +351,39 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                     </div>
                 </section>
 
+                <section id="gallery" ref={galleryRef} className="bg-background">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div
+                            ref={galleryTitleRef}
+                            className={`text-center mb-16 transition-all duration-1000 ease-out ${galleryTitleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                        >
+                            <Sparkles className="h-10 w-10 text-accent mx-auto mb-4" />
+                            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">{t("galleryTitle")}</h2>
+                        </div>
+                        <div
+                            ref={galleryGridRef}
+                            className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 transition-all duration-1000 ease-out delay-200 ${galleryGridVisible ? "opacity-100" : "opacity-0"}`}
+                        >
+                            {galleryImages.map((image, index) => (
+                                <div
+                                    key={`gallery-${index}`}
+                                    className={`aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer ${galleryGridVisible ? "animate-zoom-in" : "opacity-0"}`}
+                                    style={{ animationDelay: `${index * 100}ms` }}
+                                    onClick={() => openLightbox(galleryImages, index)}
+                                >
+                                    <Image
+                                        src={image.src}
+                                        alt={t(image.alt as TranslationKey) || image.alt}
+                                        width={600}
+                                        height={600}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 <section id="specifications" ref={specsRef} className="py-20 lg:py-28 bg-secondary">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div
@@ -401,39 +474,6 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                                 </div>
                             </CardContent>
                         </Card>
-                    </div>
-                </section>
-
-                <section id="gallery" ref={galleryRef} className="py-20 lg:py-28 bg-background">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <div
-                            ref={galleryTitleRef}
-                            className={`text-center mb-16 transition-all duration-1000 ease-out ${galleryTitleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-                        >
-                            <Sparkles className="h-10 w-10 text-accent mx-auto mb-4" />
-                            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">{t("galleryTitle")}</h2>
-                        </div>
-                        <div
-                            ref={galleryGridRef}
-                            className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 transition-all duration-1000 ease-out delay-200 ${galleryGridVisible ? "opacity-100" : "opacity-0"}`}
-                        >
-                            {galleryImages.map((image, index) => (
-                                <div
-                                    key={`gallery-${index}`}
-                                    className={`aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer ${galleryGridVisible ? "animate-zoom-in" : "opacity-0"}`}
-                                    style={{ animationDelay: `${index * 100}ms` }}
-                                    onClick={() => openLightbox(galleryImages, index)}
-                                >
-                                    <Image
-                                        src={image.src}
-                                        alt={t(image.alt as TranslationKey) || image.alt}
-                                        width={600}
-                                        height={600}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                    />
-                                </div>
-                            ))}
-                        </div>
                     </div>
                 </section>
 
