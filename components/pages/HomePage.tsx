@@ -253,7 +253,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                             <span
                                 className={`text-xl font-bold transition-colors ${isSticky ? "text-foreground" : "text-white md:text-foreground"}`}
                             >
-                Mirador Business Center
+                T3 Mirador Aveiro
               </span>
                         </div>
                         <nav className="hidden md:flex space-x-1 items-center">
@@ -343,8 +343,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                             className={`max-w-4xl mx-auto bg-card shadow-2xl overflow-hidden border-none rounded-xl transition-all duration-1000 ease-out delay-200 ${descCardVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
                         >
                             <CardContent className="p-8 md:p-12">
-                                <p className="text-lg text-card-foreground/90 leading-relaxed whitespace-pre-line">
-                                    {t("descriptionBody")}
+                                <p className="text-lg text-card-foreground/90 leading-relaxed whitespace-pre-line" dangerouslySetInnerHTML={{ __html: t("descriptionBody") }}>
                                 </p>
                             </CardContent>
                         </Card>

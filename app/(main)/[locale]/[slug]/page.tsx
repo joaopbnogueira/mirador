@@ -42,7 +42,6 @@ const getAlternateUrls = (name: LandingPageComponent): Alternate[] => {
 
 const mapComponentNameToComponent = async (name: LandingPageComponent) => {
     const translations = await getMessages();
-    console.log('Mapping component name to component:', name, translations);
     switch (name) {
         case 'Home':
             return <HomePage translations={translations} currentLanguage={getLocale()}/>;
@@ -70,7 +69,6 @@ const Page = async (props: Props) => {
     const params = await props.params;
     const { locale } = params;
     setLocale(locale);
-    console.log('SetLocale',locale,'Page');
     const component = getComponentNameFromParams(params);
     return await mapComponentNameToComponent(component as keyof TranslationTypes['landing']);
 };

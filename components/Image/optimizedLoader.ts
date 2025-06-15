@@ -132,7 +132,7 @@ class OptimizedLoader {
     if (typeof window === 'undefined') {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,@typescript-eslint/consistent-type-imports
+      // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,@typescript-eslint/consistent-type-imports,@typescript-eslint/no-require-imports
       require('child_process').execFileSync(
         'node',
         ['optimize-image.mjs', this.sourceUrl, sourceFile, targetFile, this.width, quality, extension],

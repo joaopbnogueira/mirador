@@ -27,11 +27,11 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations })
     setCurrentIndex(newIndex)
   }
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     const isLastSlide = currentIndex === images.length - 1
     const newIndex = isLastSlide ? 0 : currentIndex + 1
     setCurrentIndex(newIndex)
-  }
+  },[currentIndex, images.length])
 
   useEffect(() => {
     if (images.length <= 1) return // Don't auto-slide if only one image or no images
@@ -39,7 +39,7 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations })
       goToNext()
     }, 7000) // Slower slide transition
     return () => clearTimeout(timer)
-  }, [currentIndex, images.length])
+  }, [currentIndex, images.length, goToNext])
 
   if (!images || images.length === 0) {
     return (
