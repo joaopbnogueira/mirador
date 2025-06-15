@@ -29,101 +29,101 @@ import type {Locale, TranslationKey} from "@/lib/i18n/types";
 
 const heroImages = [
     {
-        src: "media/side.webp",
+        src: "/media/side.webp",
         alt: "Exterior View of the Property",
     },
     {
-        src: "media/sala/sala_1.jpeg",
+        src: "/media/sala/sala_1.jpeg",
         alt: "Modern Living Room",
     },
     {
-        src: "media/sala/sala_2.jpeg",
+        src: "/media/sala/sala_2.jpeg",
         alt: "Modern Living Room",
     },
 ]
 
 const galleryImages = [
     {
-        src: "media/sala/sala_1.jpeg",
+        src: "/media/sala/sala_1.jpeg",
         alt: "Detailed Living Area",
     },
     {
-        src: "media/sala/sala_2.jpeg",
+        src: "/media/sala/sala_2.jpeg",
         alt: "Detailed Living Area",
     },
     {
-        src: "media/sala/sala_3.jpeg",
+        src: "/media/sala/sala_3.jpeg",
         alt: "Detailed Living Area",
     },
     {
-        src: "media/quarto 1/quarto_1_1.jpeg",
+        src: "/media/quarto 1/quarto_1_1.jpeg",
         alt: "Cozy Bedroom Setup",
     },
     {
-        src: "media/quarto 1/quarto_1_2.jpeg",
+        src: "/media/quarto 1/quarto_1_2.jpeg",
         alt: "Cozy Bedroom Alternative View",
     },
     {
-        src: "media/quarto 2/quarto_2_1.jpeg",
+        src: "/media/quarto 2/quarto_2_1.jpeg",
         alt: "Second Bedroom View",
     },
     {
-        src: "media/quarto 2/quarto_2_2.jpeg",
+        src: "/media/quarto 2/quarto_2_2.jpeg",
         alt: "Second Bedroom Alternative View",
     },
     {
-        src: "media/varanda SE/varanda_se_1.jpeg",
+        src: "/media/varanda SE/varanda_se_1.jpeg",
         alt: "Southeast Balcony View",
     },
     {
-        src: "media/varanda SE/varanda_se_2.jpeg",
+        src: "/media/varanda SE/varanda_se_2.jpeg",
         alt: "Southeast Balcony Alternative View",
     },
     {
-        src: "media/varanda NO/varanda_no_1.jpg",
+        src: "/media/varanda NO/varanda_no_1.jpg",
         alt: "Northwest Balcony View",
     },
     {
-        src: "media/hall/ent_hall.jpeg",
+        src: "/media/hall/ent_hall.jpeg",
         alt: "Entrance Hall",
     },
     {
-        src: "media/hall/dist_hall1.jpeg",
+        src: "/media/hall/dist_hall1.jpeg",
         alt: "Detailed Living Area",
     },
     {
-        src: "media/wc servico/wc_servico_1.jpeg",
+        src: "/media/wc servico/wc_servico_1.jpeg",
         alt: "Service Bathroom",
     },
     {
-        src: "media/wc/wc_1.jpeg",
+        src: "/media/wc/wc_1.jpeg",
         alt: "Modern Bathroom",
     },
     {
-        src: "media/side.webp",
+        src: "/media/side.webp",
         alt: "Apartment Building Exterior",
     },
     {
-        src: "media/airview.png",
+        src: "/media/airview.png",
         alt: "Apartment Building Air View",
     },
     {
-        src: "media/rear.webp",
+        src: "/media/rear.webp",
         alt: "Apartment Building Rear View",
     },
 ]
 
 const floorPlanImages = [
     {
-        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
+        src: "/https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
         alt: "floorPlanMainAlt",
     },
     {
-        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
+        src: "/https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
         alt: "floorPlanBedroomAlt",
     },
     {
-        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
+        src: "/https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
         alt: "floorPlanMainAlt",
     },
 ]
@@ -194,7 +194,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
 
         // If we're on the root path or a non-locale route, simply navigate to the new locale
         if (pathname === '/' || (pathParts[0] !== 'en' && pathParts[0] !== 'pt')) {
-            window.location.href = `/${lang}`;
+            window.location.href = `/${lang}/home`;
             return;
         }
 
