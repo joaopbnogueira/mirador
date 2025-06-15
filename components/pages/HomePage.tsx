@@ -75,15 +75,15 @@ const galleryImages = [
 
 const floorPlanImages = [
     {
-        src: "media/placeholder.svg?width=1200&height=900&text=Main+Floor+Plan&bgColor=f0f0f0&textColor=333",
+        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
         alt: "floorPlanMainAlt",
     },
     {
-        src: "media/placeholder.svg?width=1200&height=900&text=Bedroom+Detail+Plan&bgColor=f0f0f0&textColor=333",
+        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
         alt: "floorPlanBedroomAlt",
     },
     {
-        src: "media/placeholder.svg?width=1200&height=900&text=Overall+Layout&bgColor=f0f0f0&textColor=333",
+        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
         alt: "floorPlanMainAlt",
     },
 ]
@@ -412,7 +412,7 @@ export const HomePage: React.FC<HomePagProps> = ({translations}) => {
                                     onClick={() => openLightbox(galleryImages, index)}
                                 >
                                     <Image
-                                        src={image.src || "media/placeholder.svg"}
+                                        src={image.src}
                                         alt={t(image.alt as TranslationKey) || image.alt}
                                         width={600}
                                         height={600}
@@ -446,7 +446,7 @@ export const HomePage: React.FC<HomePagProps> = ({translations}) => {
                                 >
                                     <div className="aspect-[4/3] relative bg-muted/30">
                                         <Image
-                                            src={image.src || "media/placeholder.svg"}
+                                            src={image.src}
                                             alt={t(image.alt as TranslationKey)}
                                             fill
                                             className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"

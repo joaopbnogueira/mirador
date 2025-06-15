@@ -69,7 +69,7 @@ export default function LightboxGallery({ images, startIndex, onClose }: Lightbo
         <div className="relative w-full h-full flex items-center justify-center max-w-[80vw] max-h-[calc(80vh-80px)] mb-4">
           {images[currentIndex] && (
             <Image
-              src={images[currentIndex].src || "media/placeholder.svg"}
+              src={images[currentIndex].src}
               alt={images[currentIndex].alt}
               width={1200} // Provide large enough base width
               height={800} // Provide large enough base height

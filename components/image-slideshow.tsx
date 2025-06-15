@@ -53,7 +53,7 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations })
     <div className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden group bg-neutral-800">
       <div className="w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out">
         <Image
-          src={images[currentIndex].src || "media/placeholder.svg"}
+          src={images[currentIndex].src}
           alt={t(images[currentIndex].alt as any) || images[currentIndex].alt}
           fill // Use fill instead of layout="fill"
           priority={currentIndex === 0}

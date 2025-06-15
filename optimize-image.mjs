@@ -124,37 +124,6 @@ class ImageOptimizer {
 
     ensureDirectoryExists(dest);
 
-    // Handle placeholder SVGs with query parameters
-    if (url.includes('placeholder.svg?')) {
-      // Extract the base path and query parameters
-      const [basePath, queryParams] = url.split('?');
-
-      // Check if the base file exists
-      if (fileExists(basePath)) {
-        // Copy the base SVG file
-        fs.copyFileSync(basePath, dest);
-        return;
-      } else {
-        // For placeholder SVGs that don't exist, we could generate them
-        // This is a simple implementation - you might want to enhance it
-        const params = new URLSearchParams('?' + queryParams);
-        const width = params.get('width') || 300;
-        const height = params.get('height') || 150;
-        const text = params.get('text') || 'Placeholder';
-        const bgColor = params.get('bgColor') || params.get('bgcolor') || '#f0f0f0';
-        const textColor = params.get('textColor') || params.get('textcolor') || '#333';
-
-        // Create a simple SVG placeholder
-        const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-          <rect width="100%" height="100%" fill="${bgColor}"/>
-          <text x="50%" y="50%" font-family="Arial" font-size="24" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${text}</text>
-        </svg>`;
-
-        fs.writeFileSync(dest, svgContent);
-        return;
-      }
-    }
-
     // Check if the URL is relative (doesn't have a protocol)
     if (!url.match(/^[a-z]+:\/\//i)) {
       // For relative paths, just copy the file if it exists
