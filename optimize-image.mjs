@@ -124,18 +124,75 @@ class ImageOptimizer {
 
     ensureDirectoryExists(dest);
 
-    const uri = new URL(url);
-    dest = dest || path.basename(uri.pathname);
+    // Handle placeholder SVGs with query parameters
+    if (url.includes('placeholder.svg?')) {
+      // Extract the base path and query parameters
+      const [basePath, queryParams] = url.split('?');
+
+      // Check if the base file exists
+      if (fileExists(basePath)) {
+        // Copy the base SVG file
+        fs.copyFileSync(basePath, dest);
+        return;
+      } else {
+        // For placeholder SVGs that don't exist, we could generate them
+        // This is a simple implementation - you might want to enhance it
+        const params = new URLSearchParams('?' + queryParams);
+        const width = params.get('width') || 300;
+        const height = params.get('height') || 150;
+        const text = params.get('text') || 'Placeholder';
+        const bgColor = params.get('bgColor') || params.get('bgcolor') || '#f0f0f0';
+        const textColor = params.get('textColor') || params.get('textcolor') || '#333';
+
+        // Create a simple SVG placeholder
+        const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+          <rect width="100%" height="100%" fill="${bgColor}"/>
+          <text x="50%" y="50%" font-family="Arial" font-size="24" fill="${textColor}" text-anchor="middle" dominant-baseline="middle">${text}</text>
+        </svg>`;
+
+        fs.writeFileSync(dest, svgContent);
+        return;
+      }
+    }
+
+    // Check if the URL is relative (doesn't have a protocol)
+    if (!url.match(/^[a-z]+:\/\//i)) {
+      // For relative paths, just copy the file if it exists
+      if (fileExists(url)) {
+        fs.copyFileSync(url, dest);
+        return;
+      }
+
+      // Extract the base filename for the destination
+      const baseFilename = url.split('?')[0];
+      dest = dest || path.basename(baseFilename);
+    } else {
+      // For absolute URLs, proceed as before
+      try {
+        const uri = new URL(url);
+        dest = dest || path.basename(uri.pathname);
+      } catch (error) {
+        console.error("Optimize-Image: invalid URL format", url, error);
+        throw error;
+      }
+    }
+
     const tempDest = `${dest}.part.${Math.random().toString(36).substring(7)}`;
 
     try {
-      const response = await fetch(url, { redirect: "follow" });
-      if (!response.ok) {
-        throw new Error(`Download request failed, response status: ${response.status} ${response.statusText}`);
+      // Only fetch if it's an absolute URL
+      if (url.match(/^[a-z]+:\/\//i)) {
+        const response = await fetch(url, { redirect: "follow" });
+        if (!response.ok) {
+          throw new Error(`Download request failed, response status: ${response.status} ${response.statusText}`);
+        }
+        const fileStream = fs.createWriteStream(tempDest, { flags: "wx" });
+        await finished(Readable.fromWeb(response.body).pipe(fileStream));
+        await fs.promises.rename(tempDest, dest);
+      } else {
+        // For relative URLs that we couldn't handle earlier, log an error
+        throw new Error(`Cannot download relative URL that doesn't exist locally: ${url}`);
       }
-      const fileStream = fs.createWriteStream(tempDest, { flags: "wx" });
-      await finished(Readable.fromWeb(response.body).pipe(fileStream));
-      await fs.promises.rename(tempDest, dest);
     } catch (error) {
       console.error("Optimize-Image: error during download", error);
       throw error;
