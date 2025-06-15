@@ -6,6 +6,7 @@ import { DEFAULT_NS } from './constants';
 
 export default getRequestConfig(async () => {
   const locale = getLocale();
+  console.log('Locale:', locale, `@/lib/i18n/locales/${locale}/${DEFAULT_NS}.json`);
   return {
     locale,
     messages: (await import(`@/lib/i18n/locales/${locale}/${DEFAULT_NS}.json`)).default,

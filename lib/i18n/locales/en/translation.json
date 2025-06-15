@@ -55,7 +55,7 @@
   "noImagesToDisplay": "No images to display",
   "landing": {
     "Home": {
-      "slug": "",
+      "slug": "home",
       "title":  "Welcome to Mirador Business Center",
       "description": "Find your new home in the heart of Aveiro. Luxury 3-bedroom apartment with 191 sqm, 3 bedrooms (1 en-suite), 3 bathrooms, garage for 2 cars, and stunning views."
     }

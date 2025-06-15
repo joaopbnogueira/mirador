@@ -25,7 +25,7 @@ import {
     CalendarDays,
 } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import type {TranslationKey} from "@/lib/i18n/types";
+import type {Locale, TranslationKey} from "@/lib/i18n/types";
 
 const heroImages = [
     {
@@ -108,11 +108,12 @@ const useScrollAnimation = (options?: IntersectionObserverInit) => {
     }, [element, options])
     return [setElement, isVisible] as const
 }
-type HomePagProps = {
+type HomePageProps = {
     translations: Record<TranslationKey, string>;
+    currentLanguage: Locale
 };
 
-export const HomePage: React.FC<HomePagProps> = ({translations}) => {
+export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}) => {
     const t = useCallback((key: TranslationKey) => translations[key] || key,[translations]);
     const [lightboxOpen, setLightboxOpen] = useState(false)
     const [lightboxImages, setLightboxImages] = useState<{ src: string; alt: string }[]>([])
@@ -144,9 +145,23 @@ export const HomePage: React.FC<HomePagProps> = ({translations}) => {
     const scrollToSection = (ref: React.RefObject<HTMLElement | null>) => {
         ref.current?.scrollIntoView({ behavior: "smooth", block: "start" })
     }
-    const changeLanguage = (lang: string) => {
-        console.log('change', lang);
-    }
+    const changeLanguage = useCallback((lang: string) => {
+        // Get the current path
+        const pathname = window.location.pathname;
+
+        // Check if we're already on a locale route
+        const pathParts = pathname.split('/').filter(Boolean);
+
+        // If we're on the root path or a non-locale route, simply navigate to the new locale
+        if (pathname === '/' || (pathParts[0] !== 'en' && pathParts[0] !== 'pt')) {
+            window.location.href = `/${lang}`;
+            return;
+        }
+
+        // If we're already on a locale route, replace the locale part
+        const newPathname = '/' + [lang, ...pathParts.slice(1)].join('/');
+        window.location.href = newPathname;
+    },[]);
 
     const [isSticky, setIsSticky] = useState(false)
     const headerRef = useRef<HTMLElement>(null)
@@ -176,8 +191,6 @@ export const HomePage: React.FC<HomePagProps> = ({translations}) => {
     const [contactTitleRef, contactTitleVisible] = useScrollAnimation({ threshold: 0.3 })
     const [contactCardRef, contactCardVisible] = useScrollAnimation({ threshold: 0.2 })
 
-    //const currentLanguage = getLocale();
-    const currentLanguage = 'pt';
     const propertyAddress = t("locationAddress").split(": ")[1] || "Rua Cristovão pinho queimado n64, aveiro, portugal"
     const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(propertyAddress)}&hl=${currentLanguage.split("-")[0]}&z=15&ie=UTF8&iwloc=B&output=embed`
 

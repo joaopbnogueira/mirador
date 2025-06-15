@@ -47,7 +47,5 @@ export const landingPages: LandingPage[] = availableLanguages
     .reduce((acc, val) => acc.concat(val), [])
     .filter(isNotEmpty);
 
-// Helper function to ensure the language is a valid Locale
-
 export const [getLocale, setLocale] = serverContext(DEFAULT_LOCALE);
 

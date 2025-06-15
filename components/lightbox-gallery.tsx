@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import {Image} from "@/components/Image"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -18,13 +18,13 @@ interface LightboxGalleryProps {
 export default function LightboxGallery({ images, startIndex, onClose }: LightboxGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(startIndex)
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
-  }
+  }, [images.length])
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
-  }
+  }, [images.length])
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -41,7 +41,7 @@ export default function LightboxGallery({ images, startIndex, onClose }: Lightbo
     return () => {
       document.removeEventListener("keydown", handleKeyDown)
     }
-  }, [onClose]) // goToPrevious and goToNext are stable if images is stable
+  }, [onClose, goToPrevious, goToNext])
 
   if (!images || images.length === 0) {
     return null

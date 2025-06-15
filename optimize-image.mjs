@@ -102,8 +102,8 @@ class ImageOptimizer {
       return;
     }
 
+    let counter = 0;
     while (this[`${name}_initializing`]) {
-      let counter = 0;
       await new Promise((resolve, reject) =>
         setTimeout(() => {
           counter++;

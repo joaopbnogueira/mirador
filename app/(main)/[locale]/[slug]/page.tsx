@@ -4,7 +4,7 @@ import {getTranslations, getMessages} from 'next-intl/server';
 import type {Alternate} from '@/lib/pageMetadata';
 import {generatePageMetadata} from '@/lib/pageMetadata';
 
-import {landingPages, setLocale} from '@/lib/i18n/server';
+import {getLocale, landingPages, setLocale} from '@/lib/i18n/server';
 import {LandingPageComponent, Locale, TranslationTypes} from '@/lib/i18n/types';
 import {HomePage} from '@/components/pages/HomePage';
 
@@ -42,10 +42,10 @@ const getAlternateUrls = (name: LandingPageComponent): Alternate[] => {
 
 const mapComponentNameToComponent = async (name: LandingPageComponent) => {
     const translations = await getMessages();
-    console.log(translations);
+    console.log('Mapping component name to component:', name, translations);
     switch (name) {
         case 'Home':
-            return <HomePage translations={translations} />;
+            return <HomePage translations={translations} currentLanguage={getLocale()}/>;
         default:
             throw new Error('Unsupported component name');
     }
@@ -70,6 +70,7 @@ const Page = async (props: Props) => {
     const params = await props.params;
     const { locale } = params;
     setLocale(locale);
+    console.log('SetLocale',locale,'Page');
     const component = getComponentNameFromParams(params);
     return await mapComponentNameToComponent(component as keyof TranslationTypes['landing']);
 };

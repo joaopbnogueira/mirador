@@ -1,6 +1,7 @@
 import type React from "react"
 import type {Metadata} from "next"
 import { RootLayout } from "@/components/RootLayout";
+import { DEFAULT_LOCALE } from "@/lib/i18n/constants";
 
 export const metadata: Metadata = {
     title: "Mirador Business Center",
@@ -8,11 +9,11 @@ export const metadata: Metadata = {
 }
 
 const Layout = ({
-                                       children,
-                                   }: Readonly<{
+    children,
+}: Readonly<{
     children: React.ReactNode
 }>) => (
-    <RootLayout locale={'pt'}>
+    <RootLayout locale={DEFAULT_LOCALE}>
         {children}
     </RootLayout>
 );
