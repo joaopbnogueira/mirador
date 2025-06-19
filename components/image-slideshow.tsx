@@ -1,7 +1,6 @@
 "use client"
 
-import React, {useCallback} from "react"
-import { useState, useEffect } from "react"
+import React, { useCallback, useState, useEffect } from "react"
 import {Image} from "@/components/Image"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
@@ -20,6 +19,7 @@ interface ImageSlideshowProps {
 const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations }) => {
   const t = useCallback((key: TranslationKey) => translations[key] || key,[translations]);
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0
@@ -41,6 +41,19 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations })
     return () => clearTimeout(timer)
   }, [currentIndex, images.length, goToNext])
 
+  // reset loaded state on slide change
+  useEffect(() => {
+    setImageLoaded(false)
+  }, [currentIndex])
+
+  // Preload all images to avoid flickering during slide transitions
+  useEffect(() => {
+    images.forEach(({ src }) => {
+      const img = new window.Image()
+      img.src = src
+    })
+  }, [images])
+
   if (!images || images.length === 0) {
     return (
       <div className="w-full h-[70vh] md:h-[85vh] bg-muted flex items-center justify-center text-muted-foreground">
@@ -51,14 +64,19 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations })
 
   return (
     <div className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden group bg-neutral-800">
-      <div className="w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out">
+      <div
+        className="w-full h-full bg-cover bg-center"
+        style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s ease-in-out' }}
+      >
         <Image
           src={images[currentIndex].src}
           alt={t(images[currentIndex].alt as any) || images[currentIndex].alt}
           fill // Use fill instead of layout="fill"
-          priority={currentIndex === 0}
+          priority // always eager load slides
+          loading="eager"
           className="transition-transform duration-1000 ease-in-out group-hover:scale-105" // Subtle zoom on hover
           style={{ objectFit: "cover" }} // Ensure image preserves aspect ratio while filling available space
+          onLoad={() => setImageLoaded(true)}
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col items-center justify-end text-center p-8 md:p-12">
@@ -104,7 +122,7 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations })
           <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
             {images.map((_, index) => (
               <button
-                key={index}
+                key={`${images[index].src}-${index}`}
                 className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentIndex === index ? "bg-white scale-125" : "bg-white/50 hover:bg-white/75"}`}
                 onClick={() => setCurrentIndex(index)}
                 aria-label={"Go to slide " + (index + 1)}

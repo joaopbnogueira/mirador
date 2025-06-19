@@ -115,15 +115,15 @@ const galleryImages = [
 
 const floorPlanImages = [
     {
-        src: "/https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
+        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
         alt: "floorPlanMainAlt",
     },
     {
-        src: "/https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
+        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
         alt: "floorPlanBedroomAlt",
     },
     {
-        src: "/https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
+        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
         alt: "floorPlanMainAlt",
     },
 ]
