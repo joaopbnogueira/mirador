@@ -24,9 +24,12 @@ import {
     LayoutGrid,
     CalendarDays,
     Euro,
+    Archive,
+    Video,
 } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import type {Locale, TranslationKey} from "@/lib/i18n/types";
+import { WhatsappIcon } from "@/components/ui/WhatsappIcon";
 
 const heroImages = [
     {
@@ -112,19 +115,8 @@ const galleryImages = [
         src: "/media/rear.webp",
         alt: "Apartment Building Rear View",
     },
-]
-
-const floorPlanImages = [
     {
-        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
-        alt: "floorPlanMainAlt",
-    },
-    {
-        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
-        alt: "floorPlanBedroomAlt",
-    },
-    {
-        src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&h=800&fit=crop&q=80",
+        src: "/media/planta.png",
         alt: "floorPlanMainAlt",
     },
 ]
@@ -171,12 +163,14 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
     const specsRef = useRef<HTMLElement>(null)
     const galleryRef = useRef<HTMLElement>(null)
     const floorPlansRef = useRef<HTMLElement>(null)
+    const videoRef = useRef<HTMLElement>(null)
     const locationRef = useRef<HTMLElement>(null)
     const contactRef = useRef<HTMLElement>(null)
 
     const navLinks = [
         { key: "navDescription" as TranslationKey, ref: descriptionRef, id: "description" },
         { key: "navGallery" as TranslationKey, ref: galleryRef, id: "gallery" },
+        { key: "navVideo" as TranslationKey, ref: videoRef, id: "video" },
         { key: "navSpecs" as TranslationKey, ref: specsRef, id: "specifications" },
         { key: "navFloorPlans" as TranslationKey, ref: floorPlansRef, id: "floor-plans" },
         { key: "navLocation" as TranslationKey, ref: locationRef, id: "location" },
@@ -225,14 +219,14 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
     const [specsCardRef, specsCardVisible] = useScrollAnimation({ threshold: 0.2 })
     const [galleryTitleRef, galleryTitleVisible] = useScrollAnimation({ threshold: 0.3 })
     const [galleryGridRef, galleryGridVisible] = useScrollAnimation({ threshold: 0.1 })
-    const [floorPlansTitleRef, floorPlansTitleVisible] = useScrollAnimation({ threshold: 0.3 })
-    const [floorPlansGridRef, floorPlansGridVisible] = useScrollAnimation({ threshold: 0.1 })
+    const [videoTitleRef, videoTitleVisible] = useScrollAnimation({ threshold: 0.3 })
+    const [videoCardRef, videoCardVisible] = useScrollAnimation({ threshold: 0.2 })
     const [locationTitleRef, locationTitleVisible] = useScrollAnimation({ threshold: 0.3 })
     const [locationCardRef, locationCardVisible] = useScrollAnimation({ threshold: 0.2 })
     const [contactTitleRef, contactTitleVisible] = useScrollAnimation({ threshold: 0.3 })
     const [contactCardRef, contactCardVisible] = useScrollAnimation({ threshold: 0.2 })
 
-    const propertyAddress = t("locationAddress").split(": ")[1] || "Rua Cristovão pinho queimado n64, aveiro, portugal"
+    const propertyAddress = t("locationAddress")
     const mapEmbedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(propertyAddress)}&hl=${currentLanguage.split("-")[0]}&z=15&ie=UTF8&iwloc=B&output=embed`
 
     return (
@@ -380,6 +374,32 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                     </div>
                 </section>
 
+                <section id="video" ref={videoRef} className="py-16 lg:py-20 bg-background">
+                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                        <div
+                            ref={videoTitleRef}
+                            className={`text-center mb-16 transition-all duration-1000 ease-out ${videoTitleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                        >
+                            <Video className="h-10 w-10 text-accent mx-auto mb-4" />
+                            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">{t("videoTitle")}</h2>
+                        </div>
+                        <Card
+                            ref={videoCardRef}
+                            className={`max-w-lg mx-auto bg-card shadow-2xl overflow-hidden border-none rounded-xl transition-all duration-1000 ease-out delay-200 ${videoCardVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
+                            <div className="aspect-[9/16] w-full">
+                                <iframe
+                                    src="https://www.youtube.com/embed/your_video_id_here"
+                                    title="YouTube video player"
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen
+                                    className="w-full h-full"
+                                ></iframe>
+                            </div>
+                        </Card>
+                    </div>
+                </section>
+
                 <section id="specifications" ref={specsRef} className="py-16 lg:py-20 bg-secondary">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div
@@ -417,14 +437,19 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                                             valueKey: "specsValueParking",
                                         },
                                         {
+                                            icon: <Archive className="w-6 h-6 text-primary" />,
+                                            labelKey: "specsStorage",
+                                            valueKey: "specsValueStorage",
+                                        },
+                                        {
                                             icon: <Building className="w-6 h-6 text-primary" />,
                                             labelKey: "specsElevator",
                                             valueKey: "specsValueElevator",
                                         },
                                         {
-                                            icon: <CheckCircle className="w-6 h-6 text-primary" />,
-                                            labelKey: "specsCondition",
-                                            valueKey: "specsValueCondition",
+                                            icon: <CalendarDays className="w-6 h-6 text-primary" />,
+                                            labelKey: "specsYear",
+                                            valueKey: "specsValueYear",
                                         },
                                         {
                                             icon: <BarChart className="w-6 h-6 text-primary" />,
@@ -444,7 +469,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                                     ].map((spec, index) => (
                                         <div
                                             key={spec.labelKey}
-                                            className={`p-8 flex items-center space-x-4 ${index < 6 ? "border-b" : ""} ${index % 2 === 0 ? "md:border-r" : ""} border-border/70`}
+                                            className={`p-8 flex items-center space-x-4 ${index < 8 ? "border-b" : ""} ${index % 2 === 0 ? "md:border-r" : ""} border-border/70`}
                                         >
                                             <div className="flex-shrink-0 p-3 bg-primary/10 rounded-full">{spec.icon}</div>
                                             <div>
@@ -475,43 +500,6 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                                 </div>
                             </CardContent>
                         </Card>
-                    </div>
-                </section>
-
-                <section id="floor-plans" ref={floorPlansRef} className="py-16 lg:py-20 bg-secondary">
-                    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                        <div
-                            ref={floorPlansTitleRef}
-                            className={`text-center mb-16 transition-all duration-1000 ease-out ${floorPlansTitleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-                        >
-                            <LayoutGrid className="h-10 w-10 text-accent mx-auto mb-4" />
-                            <h2 className="text-4xl lg:text-5xl font-bold text-secondary-foreground mb-4">{t("floorPlansTitle")}</h2>
-                        </div>
-                        <div
-                            ref={floorPlansGridRef}
-                            className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 transition-all duration-1000 ease-out delay-200 ${floorPlansGridVisible ? "opacity-100" : "opacity-0"}`}
-                        >
-                            {floorPlanImages.map((image, index) => (
-                                <Card
-                                    key={`floorplan-${index}`}
-                                    className={`bg-card overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer border-none rounded-xl ${floorPlansGridVisible ? "animate-zoom-in" : "opacity-0"}`}
-                                    style={{ animationDelay: `${index * 150}ms` }}
-                                    onClick={() => openLightbox(floorPlanImages, index)}
-                                >
-                                    <div className="aspect-[4/3] relative bg-muted/30">
-                                        <Image
-                                            src={image.src}
-                                            alt={t(image.alt as TranslationKey)}
-                                            fill
-                                            className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                                        />
-                                    </div>
-                                    <p className="text-center py-4 bg-card-foreground/5 text-sm text-card-foreground/80 font-medium">
-                                        {t(image.alt as TranslationKey)}
-                                    </p>
-                                </Card>
-                            ))}
-                        </div>
                     </div>
                 </section>
 
@@ -585,9 +573,6 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                             ref={contactCardRef}
                             className={`max-w-md mx-auto w-full transition-all duration-1000 ease-out delay-200 ${contactCardVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
                         >
-                            <h3 className="text-2xl font-semibold text-secondary-foreground text-center mb-6">
-                                {t("contactOrCall")}
-                            </h3>
                             <Card className="shadow-xl border-none rounded-xl bg-card">
                                 <CardContent className="p-8 space-y-6">
                                     <div className="flex items-start space-x-4">
@@ -596,8 +581,13 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                                         </div>
                                         <div>
                                             <p className="text-sm font-medium text-muted-foreground">{t("contactTel")}</p>
-                                            <a href="tel:+351123456789" className="text-lg text-primary font-semibold hover:underline">
-                                                +351 123 456 789
+                                            <a href="https://wa.me/351914109117" target="_blank" rel="noopener noreferrer" className="text-lg text-primary font-semibold hover:underline flex items-center">
+                                                <WhatsappIcon className="w-5 h-5 mr-2" />
+                                                +351 914 109 117
+                                            </a>
+                                            <a href="https://wa.me/351962924365" target="_blank" rel="noopener noreferrer" className="text-lg text-primary font-semibold hover:underline flex items-center mt-2">
+                                                <WhatsappIcon className="w-5 h-5 mr-2" />
+                                                +351 962 924 365
                                             </a>
                                         </div>
                                     </div>
@@ -608,10 +598,10 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                                         <div>
                                             <p className="text-sm font-medium text-muted-foreground">{t("contactEmailLabel")}</p>
                                             <a
-                                                href="mailto:info@miradoraveiro.pt"
+                                                href="mailto:info@t3mirador.com"
                                                 className="text-lg text-primary font-semibold hover:underline"
                                             >
-                                                info@miradoraveiro.pt
+                                                info@t3mirador.com
                                             </a>
                                         </div>
                                     </div>
@@ -620,7 +610,6 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                                             <MapPin className="w-5 h-5 text-primary" />
                                         </div>
                                         <div>
-                                            <p className="text-sm font-medium text-muted-foreground">{t("locationAddress").split(": ")[0]}</p>
                                             <p className="text-lg text-card-foreground/90">{propertyAddress}</p>
                                         </div>
                                     </div>
@@ -633,7 +622,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                                     asChild
                                 >
                                     <a
-                                        href={`mailto:info@miradoraveiro.pt?subject=${encodeURIComponent(t("contactScheduleVisit"))}%20for%20Mirador%20Residence&body=I%20would%20like%20to%20schedule%20a%20visit%20for%20the%20property%20at%20Mirador%20Business%20Center.%0D%0APlease%20let%20me%20know%20your%20availability.%0D%0A%0D%0AThank%20you,`}
+                                        href={`mailto:info@t3mirador.com?subject=${encodeURIComponent(t("contactMailSubject"))}&body=${encodeURIComponent(t("contactMailBody"))}`}
                                     >
                                         <CalendarDays className="mr-3 h-6 w-6" />
                                         {t("contactScheduleVisit")}
