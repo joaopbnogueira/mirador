@@ -327,7 +327,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                     <ImageSlideshow images={heroImages} translations={translations} />
                 </section>
 
-                <section id="description" ref={descriptionRef} className="py-20 lg:py-28 bg-background">
+                <section id="description" ref={descriptionRef} className="py-16 lg:py-20 bg-background">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div
                             ref={descTitleRef}
@@ -380,7 +380,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                     </div>
                 </section>
 
-                <section id="specifications" ref={specsRef} className="py-20 lg:py-28 bg-secondary">
+                <section id="specifications" ref={specsRef} className="py-16 lg:py-20 bg-secondary">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div
                             ref={specsTitleRef}
@@ -478,7 +478,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                     </div>
                 </section>
 
-                <section id="floor-plans" ref={floorPlansRef} className="py-20 lg:py-28 bg-secondary">
+                <section id="floor-plans" ref={floorPlansRef} className="py-16 lg:py-20 bg-secondary">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div
                             ref={floorPlansTitleRef}
@@ -519,7 +519,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                     <LightboxGallery images={lightboxImages} startIndex={selectedImageIndex} onClose={closeLightbox} />
                 )}
 
-                <section id="location" ref={locationRef} className="py-20 lg:py-28 bg-background">
+                <section id="location" ref={locationRef} className="py-16 lg:py-20 bg-background">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div
                             ref={locationTitleRef}
@@ -571,7 +571,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                     </div>
                 </section>
 
-                <section id="contact" ref={contactRef} className="py-20 lg:py-28 bg-secondary">
+                <section id="contact" ref={contactRef} className="py-16 lg:py-20 bg-secondary">
                     <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                         <div
                             ref={contactTitleRef}

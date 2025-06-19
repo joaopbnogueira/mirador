@@ -64,21 +64,16 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations })
 
   return (
     <div className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden group bg-neutral-800">
-      <div
-        className="w-full h-full bg-cover bg-center"
+      <Image
+        src={images[currentIndex].src}
+        alt={t(images[currentIndex].alt as any) || images[currentIndex].alt}
+        fill // Use fill instead of layout="fill"
+        priority // always eager load slides
+        loading="eager"
+        className="w-full h-full transition-transform duration-1000 ease-in-out group-hover:scale-105 object-cover"
         style={{ opacity: imageLoaded ? 1 : 0, transition: 'opacity 1s ease-in-out' }}
-      >
-        <Image
-          src={images[currentIndex].src}
-          alt={t(images[currentIndex].alt as any) || images[currentIndex].alt}
-          fill // Use fill instead of layout="fill"
-          priority // always eager load slides
-          loading="eager"
-          className="transition-transform duration-1000 ease-in-out group-hover:scale-105" // Subtle zoom on hover
-          style={{ objectFit: "cover" }} // Ensure image preserves aspect ratio while filling available space
-          onLoad={() => setImageLoaded(true)}
-        />
-      </div>
+        onLoad={() => setImageLoaded(true)}
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col items-center justify-end text-center p-8 md:p-12">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-xl animate-fade-in-up">
           {t("heroTitle")}
@@ -86,18 +81,6 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, translations })
         <p className="text-xl md:text-2xl text-gray-200 mb-8 drop-shadow-lg animate-fade-in-up animation-delay-300">
           {t("heroSubtitle")}
         </p>
-        <Button
-          size="lg"
-          className="bg-primary hover:bg-primary/90 text-primary-foreground px-10 py-3 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 animate-fade-in-up animation-delay-600"
-          onClick={() => {
-            const descriptionSection = document.getElementById("description")
-            if (descriptionSection) {
-              descriptionSection.scrollIntoView({ behavior: "smooth" })
-            }
-          }}
-        >
-          {t("heroViewDetails")}
-        </Button>
       </div>
       {images.length > 1 && (
         <>
