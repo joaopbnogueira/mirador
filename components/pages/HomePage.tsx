@@ -4,7 +4,7 @@ import React, {useCallback,  useRef, useEffect, useState} from "react"
 import {Image} from "@/components/Image" // Still used for gallery, floor plans, etc.
 
 import ImageSlideshow from "@/components/image-slideshow"
-import LightboxGallery from "@/components/lightbox-gallery"
+import {LightboxGallery} from "@/components/lightbox-gallery"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import {

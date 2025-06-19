@@ -1,117 +1,160 @@
 "use client"
 import { useCallback, useEffect, useState } from "react"
-import {Image} from "@/components/Image"
+import {Image as NextImage} from "@/components/Image"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
 interface ImageItem {
-  src: string
-  alt: string
+  src: string;
+  alt: string;
+  title?: string;
 }
 
 interface LightboxGalleryProps {
-  images: ImageItem[]
-  startIndex: number
-  onClose: () => void
+  images: ImageItem[];
+  startIndex?: number;
+  onClose: () => void;
+  autoplay?: boolean;
+  autoplayDelay?: number;
 }
 
-export default function LightboxGallery({ images, startIndex, onClose }: LightboxGalleryProps) {
-  const [currentIndex, setCurrentIndex] = useState(startIndex)
+export const LightboxGallery: React.FC<LightboxGalleryProps> = ({
+                                                           images,
+                                                           startIndex = 0,
+                                                           onClose,
+                                                           autoplay = false,
+                                                           autoplayDelay = 5000
+                                                         }) => {
+  const [currentIndex, setCurrentIndex] = useState(startIndex);
+  const [isLoaded, setIsLoaded] = useState(false);
 
+  // --- Navigation ---
   const goToPrevious = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
-  }, [images.length])
+    setIsLoaded(false);
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+  }, [images.length]);
 
   const goToNext = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
-  }, [images.length])
+    setIsLoaded(false);
+    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+  }, [images.length]);
 
+  // --- Effects ---
+
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose()
-      } else if (event.key === "ArrowLeft") {
-        goToPrevious()
-      } else if (event.key === "ArrowRight") {
-        goToNext()
-      }
-    }
+      if (event.key === "Escape") onClose();
+      else if (event.key === "ArrowLeft") goToPrevious();
+      else if (event.key === "ArrowRight") goToNext();
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose, goToPrevious, goToNext]);
 
-    document.addEventListener("keydown", handleKeyDown)
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown)
+  // Autoplay functionality
+  useEffect(() => {
+    if (autoplay && images.length > 1) {
+      const timer = setTimeout(goToNext, autoplayDelay);
+      return () => clearTimeout(timer);
     }
-  }, [onClose, goToPrevious, goToNext])
+  }, [currentIndex, autoplay, autoplayDelay, goToNext, images.length]);
+
+  // Smart image preloading
+  useEffect(() => {
+    if (images.length > 1) {
+      const nextIndex = (currentIndex + 1) % images.length;
+      const prevIndex = (currentIndex - 1 + images.length) % images.length;
+
+      const nextImg = new Image();
+      nextImg.src = images[nextIndex].src;
+
+      const prevImg = new Image();
+      prevImg.src = images[prevIndex].src;
+    }
+  }, [currentIndex, images]);
 
   if (!images || images.length === 0) {
-    return null
+    return null;
   }
 
-  return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
-      onClick={onClose} // Close on overlay click
-    >
-      <div
-        className="relative bg-background dark:bg-neutral-900 p-4 rounded-lg shadow-2xl max-w-[90vw] max-h-[90vh] flex flex-col items-center"
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal content
-      >
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute top-3 right-3 z-10 text-foreground hover:bg-muted"
-          onClick={onClose}
-          aria-label="Close lightbox"
-        >
-          <X className="h-6 w-6" />
-        </Button>
+  const currentImage = images[currentIndex];
 
-        <div className="relative w-full h-full flex items-center justify-center max-w-[80vw] max-h-[calc(80vh-80px)] mb-4">
-          {images[currentIndex] && (
-            <Image
-              src={images[currentIndex].src}
-              alt={images[currentIndex].alt}
-              width={1200} // Provide large enough base width
-              height={800} // Provide large enough base height
-              style={{
-                maxWidth: "100%",
-                maxHeight: "100%",
-                width: "auto",
-                height: "auto",
-                objectFit: "contain",
-              }}
-              className="rounded"
-              priority // Prioritize loading the visible image
-            />
+  return (
+      <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fade-in"
+          onClick={onClose}
+          aria-modal="true"
+          role="dialog"
+      >
+        <div
+            className="relative bg-white dark:bg-neutral-900 rounded-lg shadow-2xl w-[95vw] h-[95vh] max-w-7xl max-h-[1200px] flex flex-col p-4"
+            onClick={(e) => e.stopPropagation()}
+        >
+          {/* Header: Title and Close Button */}
+          <header className="flex-shrink-0 flex items-center justify-between pb-3">
+            <div className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+              {currentImage?.title || ''}
+            </div>
+            <button
+                onClick={onClose}
+                className="p-2 text-gray-600 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                aria-label="Close lightbox"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </header>
+
+          {/* Image Display Area */}
+          <div className="relative flex-grow flex items-center justify-center overflow-hidden">
+            {currentImage && (
+                <NextImage
+                    key={currentImage.src}
+                    src={currentImage.src}
+                    alt={currentImage.alt}
+                    width={1200} // Provide large enough base width
+                    height={800} // Provide large enough base height
+                    className="transition-opacity duration-500 ease-in-out rounded-md"
+                    style={{
+                      opacity: isLoaded ? 1 : 0,
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
+                    onLoad={() => setIsLoaded(true)}
+                    priority // Prioritize loading the visible image
+                />
+            )}
+            {/* Loading Spinner */}
+            {!isLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-8 h-8 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+                </div>
+            )}
+          </div>
+
+          {/* Footer: Controls and Counter */}
+          {images.length > 1 && (
+              <footer className="flex-shrink-0 flex items-center justify-between pt-3">
+                <button
+                    onClick={goToPrevious}
+                    className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-neutral-700 text-gray-700 dark:text-gray-200"
+                    aria-label="Previous image"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {currentIndex + 1} / {images.length}
+                </p>
+                <button
+                    onClick={goToNext}
+                    className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-neutral-700 text-gray-700 dark:text-gray-200"
+                    aria-label="Next image"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+              </footer>
           )}
         </div>
-
-        {images.length > 1 && (
-          <div className="flex items-center justify-between w-full mt-auto px-4">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={goToPrevious}
-              className="bg-background/80 hover:bg-muted"
-              aria-label="Previous image"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </Button>
-            <p className="text-sm text-muted-foreground">
-              {currentIndex + 1} / {images.length}
-            </p>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={goToNext}
-              className="bg-background/80 hover:bg-muted"
-              aria-label="Next image"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </Button>
-          </div>
-        )}
       </div>
-    </div>
-  )
+  );
 }
