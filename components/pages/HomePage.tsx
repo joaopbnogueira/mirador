@@ -21,7 +21,6 @@ import {
     Menu,
     Home,
     Sparkles,
-    LayoutGrid,
     CalendarDays,
     Euro,
     Archive,
@@ -162,7 +161,6 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
     const descriptionRef = useRef<HTMLElement>(null)
     const specsRef = useRef<HTMLElement>(null)
     const galleryRef = useRef<HTMLElement>(null)
-    const floorPlansRef = useRef<HTMLElement>(null)
     const videoRef = useRef<HTMLElement>(null)
     const locationRef = useRef<HTMLElement>(null)
     const contactRef = useRef<HTMLElement>(null)
@@ -172,7 +170,6 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
         { key: "navGallery" as TranslationKey, ref: galleryRef, id: "gallery" },
         { key: "navVideo" as TranslationKey, ref: videoRef, id: "video" },
         { key: "navSpecs" as TranslationKey, ref: specsRef, id: "specifications" },
-        { key: "navFloorPlans" as TranslationKey, ref: floorPlansRef, id: "floor-plans" },
         { key: "navLocation" as TranslationKey, ref: locationRef, id: "location" },
         { key: "navContact" as TranslationKey, ref: contactRef, id: "contact" },
     ]

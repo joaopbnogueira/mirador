@@ -3,7 +3,6 @@
   "navDescription": "Descrição",
   "navSpecs": "Especificações",
   "navGallery": "Galeria de Imagens",
-  "navFloorPlans": "Plantas",
   "navVideo": "Vídeo",
   "navLocation": "Localização",
   "navContact": "Contacto",
@@ -38,7 +37,6 @@
   "specsValueFeatures": "Ar condicionado LG, caixilharia e vidros de elevada qualidade SSG Climalit, blackouts elétricos, alarme.",
   "galleryTitle": "Imagens",
   "videoTitle": "Tour em Vídeo",
-  "floorPlansTitle": "Plantas do Imóvel",
   "floorPlanMainAlt": "Planta Principal",
   "floorPlanBedroomAlt": "Planta Detalhada do Quarto",
   "locationTitle": "Localização e Mapa",
@@ -74,7 +72,6 @@
     "description": "Descrição",
     "specs": "Especificações",
     "gallery": "Galeria",
-    "floorPlans": "Plantas",
     "location": "Localização",
     "contact": "Contacto"
   }
