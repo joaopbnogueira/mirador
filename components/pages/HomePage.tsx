@@ -23,6 +23,7 @@ import {
     Sparkles,
     LayoutGrid,
     CalendarDays,
+    Euro,
 } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import type {Locale, TranslationKey} from "@/lib/i18n/types";
@@ -332,11 +333,7 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                             ref={descTitleRef}
                             className={`text-center mb-16 transition-all duration-1000 ease-out ${descTitleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                         >
-                            <Sparkles className="h-10 w-10 text-accent mx-auto mb-4" />
                             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">{t("descriptionTitle")}</h2>
-                            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                                {t("descriptionBody").substring(0, 150)}...
-                            </p>
                         </div>
                         <Card
                             ref={descCardRef}
@@ -438,6 +435,11 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                                             icon: <Home className="w-6 h-6 text-primary" />,
                                             labelKey: "specsFloor",
                                             valueKey: "specsValueFloor",
+                                        },
+                                        {
+                                            icon: <Euro className="w-6 h-6 text-primary" />,
+                                            labelKey: "specsPrice" as TranslationKey,
+                                            valueKey: "specsValuePrice" as TranslationKey,
                                         },
                                     ].map((spec, index) => (
                                         <div
