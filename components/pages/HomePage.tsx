@@ -59,6 +59,22 @@ const galleryImages = [
         alt: "Detailed Living Area",
     },
     {
+        src: "/media/suite/suite_1.jpg",
+        alt: "Main Suite Setup",
+    },
+    {
+        src: "/media/suite/suite_2.jpg",
+        alt: "Main Suite Alternative View",
+    },
+    {
+        src: "/media/wc suite/wc_suite_1.jpg",
+        alt: "Main Suite Bathroom Setup",
+    },
+    {
+        src: "/media/wc suite/wc_suite_2.jpg",
+        alt: "Main Suite Bathroom Alternative View",
+    },
+    {
         src: "/media/quarto 1/quarto_1_1.jpeg",
         alt: "Cozy Bedroom Setup",
     },
@@ -385,13 +401,11 @@ export const HomePage: React.FC<HomePageProps> = ({translations,currentLanguage}
                             className={`max-w-lg mx-auto bg-card shadow-2xl overflow-hidden border-none rounded-xl transition-all duration-1000 ease-out delay-200 ${videoCardVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
                             <div className="aspect-[9/16] w-full">
                                 <iframe
-                                    src="https://www.youtube.com/embed/your_video_id_here"
-                                    title="YouTube video player"
-                                    frameBorder="0"
+                                    src="https://www.youtube.com/embed/fE6lMZQeaek?autoplay=1&mute=1"
+                                    title="YouTube T3 Mirador Aveiro Video" frameBorder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowFullScreen
-                                    className="w-full h-full"
-                                ></iframe>
+                                    allowFullScreen className="w-full h-full">
+                                </iframe>
                             </div>
                         </Card>
                     </div>
