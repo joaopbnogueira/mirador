@@ -60,6 +60,7 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
             title: `${t(`landing.${component}.title`, {defaultValue: ''})}`,
             description: `${t(`landing.${component}.description`, {defaultValue: ''})}`,
             alternates: getAlternateUrls(component),
+            imageSrc: '/media/sala/sala_1.jpeg',
         },
         parent,
     );
