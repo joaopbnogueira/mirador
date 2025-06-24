@@ -80,6 +80,7 @@ export const generatePageMetadata = async (
   }
 
   return {
+    metadataBase: parentMetadata.metadataBase ?? new URL(AppConstants.SITE_URL),
     keywords: keywords || [],
     title: titleWithFallback,
     description: descriptionWithFallback,
