@@ -24,7 +24,7 @@ export function baseGenerateViewport(): Viewport {
 }
 
 // https://github.com/vercel/next.js/discussions/50189
-const getPathnameFromMetadataState = (state: any): string => {
+export const getPathnameFromMetadataState = (state: any): string => {
     const res = Object.getOwnPropertySymbols(state || {})
         .map((p) => state[p])
         // eslint-disable-next-line no-prototype-builtins
