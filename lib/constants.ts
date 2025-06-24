@@ -11,6 +11,6 @@ export const AppConstants = {
   IS_DEV: isDev,
   IMAGE_LOADER: process.env.IMAGE_LOADER,
   PORT: process.env.PORT,
-  SITE_URL: process.env.SITE_URL || '',
+  SITE_URL: 'https://www.t3mirador.com',
   IS_PRODUCTION: process.env.IS_PRODUCTION === 'true',
 } as const;
