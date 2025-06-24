@@ -51,15 +51,15 @@ export async function baseGenerateMetadata({locale}: MetadataProps, parent: Reso
     const pathName = getPathnameFromMetadataState(parent);
     return {
         metadataBase: new URL(AppConstants.SITE_URL),
-        title: `${title} - ${AppConstants.APP_NAME}`,
+        title: `${title}`,
         description: description,
-        applicationName: AppConstants.APP_NAME,
+        applicationName: `${title}`,
         robots: AppConstants.IS_PRODUCTION ? 'all' : 'noindex, nofollow',
         icons: ['/favicon.ico', '/favicon.svg', '/favicon-32x32.png', '/favicon-16x16.png'],
         manifest: '/site.webmanifest',
         appleWebApp: {
             capable: true,
-            title: AppConstants.APP_NAME,
+            title: `${title}`,
             statusBarStyle: 'default',
         },
         other: {'msapplication-TileColor': ['#ffffff'], 'msapplication-TileImage': ['/mstile-150x150.png']},

@@ -51,7 +51,7 @@ export const generatePageMetadata = async (
   parent: ResolvingMetadata,
 ): Promise<Metadata> => {
   const parentMetadata = await parent;
-  const titleWithFallback = title ? `${title} - ${AppConstants.APP_NAME}` : parentMetadata.title;
+  const titleWithFallback = title ? `${title}` : parentMetadata.title;
   const descriptionWithFallback = `${description}` || parentMetadata.description;
   const openGraph = {
     ...(parentMetadata.openGraph ?? ({} as any)),
