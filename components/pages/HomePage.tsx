@@ -36,86 +36,86 @@ const heroImages = [
         alt: "Exterior View of the Property",
     },
     {
-        src: "/media/sala/sala_1.jpeg",
+        src: "/media/sala/sala_1.webp",
         alt: "Modern Living Room",
     },
     {
-        src: "/media/sala/sala_2.jpeg",
+        src: "/media/sala/sala_2.webp",
         alt: "Modern Living Room",
     },
 ]
 
 const galleryImages = [
     {
-        src: "/media/sala/sala_1.jpeg",
+        src: "/media/sala/sala_1.webp",
         alt: "Detailed Living Area",
     },
     {
-        src: "/media/sala/sala_2.jpeg",
+        src: "/media/sala/sala_2.webp",
         alt: "Detailed Living Area",
     },
     {
-        src: "/media/sala/sala_3.jpeg",
+        src: "/media/sala/sala_3.webp",
         alt: "Detailed Living Area",
     },
     {
-        src: "/media/suite/suite_1.jpg",
+        src: "/media/suite/suite_1.webp",
         alt: "Main Suite Setup",
     },
     {
-        src: "/media/suite/suite_2.jpg",
+        src: "/media/suite/suite_2.webp",
         alt: "Main Suite Alternative View",
     },
     {
-        src: "/media/wc suite/wc_suite_1.jpg",
+        src: "/media/wc suite/wc_suite_1.webp",
         alt: "Main Suite Bathroom Setup",
     },
     {
-        src: "/media/wc suite/wc_suite_2.jpg",
+        src: "/media/wc suite/wc_suite_2.webp",
         alt: "Main Suite Bathroom Alternative View",
     },
     {
-        src: "/media/quarto 1/quarto_1_1.jpeg",
+        src: "/media/quarto 1/quarto_1_1.webp",
         alt: "Cozy Bedroom Setup",
     },
     {
-        src: "/media/quarto 1/quarto_1_2.jpeg",
+        src: "/media/quarto 1/quarto_1_2.webp",
         alt: "Cozy Bedroom Alternative View",
     },
     {
-        src: "/media/quarto 2/quarto_2_1.jpeg",
+        src: "/media/quarto 2/quarto_2_1.webp",
         alt: "Second Bedroom View",
     },
     {
-        src: "/media/quarto 2/quarto_2_2.jpeg",
+        src: "/media/quarto 2/quarto_2_2.webp",
         alt: "Second Bedroom Alternative View",
     },
     {
-        src: "/media/varanda SE/varanda_se_1.jpeg",
+        src: "/media/varanda SE/varanda_se_1.webp",
         alt: "Southeast Balcony View",
     },
     {
-        src: "/media/varanda SE/varanda_se_2.jpeg",
+        src: "/media/varanda SE/varanda_se_2.webp",
         alt: "Southeast Balcony Alternative View",
     },
     {
-        src: "/media/varanda NO/varanda_no_1.jpg",
+        src: "/media/varanda NO/varanda_no_1.webp",
         alt: "Northwest Balcony View",
     },
     {
-        src: "/media/hall/ent_hall.jpeg",
+        src: "/media/hall/ent_hall.webp",
         alt: "Entrance Hall",
     },
     {
-        src: "/media/hall/dist_hall1.jpeg",
+        src: "/media/hall/dist_hall1.webp",
         alt: "Detailed Living Area",
     },
     {
-        src: "/media/wc servico/wc_servico_1.jpeg",
+        src: "/media/wc servico/wc_servico_1.webp",
         alt: "Service Bathroom",
     },
     {
-        src: "/media/wc/wc_1.jpeg",
+        src: "/media/wc/wc_1.webp",
         alt: "Modern Bathroom",
     },
     {
@@ -123,7 +123,7 @@ const galleryImages = [
         alt: "Apartment Building Exterior",
     },
     {
-        src: "/media/airview.png",
+        src: "/media/airview.webp",
         alt: "Apartment Building Air View",
     },
     {
@@ -131,7 +131,7 @@ const galleryImages = [
         alt: "Apartment Building Rear View",
     },
     {
-        src: "/media/planta.png",
+        src: "/media/planta.webp",
         alt: "floorPlanMainAlt",
     },
 ]

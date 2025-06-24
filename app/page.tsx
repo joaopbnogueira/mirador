@@ -19,7 +19,7 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
 
     const title = `${t(`landing.Home.title`, {defaultValue: ''})}`;
     const description = `${t(`landing.Home.description`, {defaultValue: ''})}`;
-    const imageSrc = '/media/sala/sala_1.jpeg';
+    const imageSrc = '/media/sala/sala_1.webp';
     const locale = getLocale();
     const images = [
         {
@@ -67,7 +67,7 @@ export async function generateMetadata(props: Props, parent: ResolvingMetadata):
         {
             title: `${t(`landing.Home.title`, {defaultValue: ''})}`,
             description: `${t(`landing.Home.description`, {defaultValue: ''})}`,
-            imageSrc: '/media/sala/sala_1.jpeg',
+            imageSrc: '/media/sala/sala_1.webp',
         }, parent));
 }
 
